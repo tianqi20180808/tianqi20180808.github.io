@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>js运行机制 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、 服务端安装git第1步：先安装git工具 1yum  -y install  git  输入git命令测试，若出现相应的提示说明安装成功。 第2步：新建一个用户起名git 1adduser git  第3步：在/home/git/目录下创建一个名为.ssh的文件夹，在其.ssh目录中新建一个文件名为authorized_keys,用于保存后面生成的公钥,用于免密码提交。 123cd /hom">
+<meta name="keywords" content="js,原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js运行机制">
+<meta property="og:url" content="http://yoursite.com/2018/06/03/js运行机制/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、 服务端安装git第1步：先安装git工具 1yum  -y install  git  输入git命令测试，若出现相应的提示说明安装成功。 第2步：新建一个用户起名git 1adduser git  第3步：在/home/git/目录下创建一个名为.ssh的文件夹，在其.ssh目录中新建一个文件名为authorized_keys,用于保存后面生成的公钥,用于免密码提交。 123cd /hom">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-03T07:52:07.494Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js运行机制">
+<meta name="twitter:description" content="一、 服务端安装git第1步：先安装git工具 1yum  -y install  git  输入git命令测试，若出现相应的提示说明安装成功。 第2步：新建一个用户起名git 1adduser git  第3步：在/home/git/目录下创建一个名为.ssh的文件夹，在其.ssh目录中新建一个文件名为authorized_keys,用于保存后面生成的公钥,用于免密码提交。 123cd /hom">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-js运行机制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/03/js运行机制/" class="article-date">
+  <time datetime="2018-06-03T07:49:53.000Z" itemprop="datePublished">2018-06-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js运行机制
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、-服务端安装git"><a href="#一、-服务端安装git" class="headerlink" title="一、 服务端安装git"></a>一、 服务端安装git</h2><p>第1步：先安装git工具</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum  -y install  git</span><br></pre></td></tr></table></figure>
+
+<p>输入git命令测试，若出现相应的提示说明安装成功。</p>
+<p>第2步：新建一个用户起名git</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser git</span><br></pre></td></tr></table></figure>
+
+<p>第3步：在/home/git/目录下创建一个名为.ssh的文件夹，在其.ssh目录中新建一个文件名为authorized_keys,用于保存后面生成的公钥,用于免密码提交。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /home/git</span><br><span class="line">mkdir .ssh</span><br><span class="line">touch authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p>第4步：在git用户目录创建一个仓库（这里的仓库位置可以随意），名为project.git,在初始化此仓库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /home/git</span><br><span class="line">mkdir project.git</span><br><span class="line">git init --bare project.git</span><br></pre></td></tr></table></figure>
+
+<p>第5步：将git用户目录中的仓库和ssh目录的所有者和所属组都设置为git</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /home/git</span><br><span class="line">chown -R git.git project.git/</span><br><span class="line">chown -R git.git .ssh/</span><br></pre></td></tr></table></figure>
+
+<p>第6步：修改sshd_config文件，打开RSA认证</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config </span><br><span class="line">``` </span><br><span class="line">开启三项：</span><br><span class="line">```shell</span><br><span class="line"> RSAAuthentication yes     </span><br><span class="line"> PubkeyAuthentication yes     </span><br><span class="line"> AuthorizedKeysFile  .ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>为了安全，禁止git用户进行shell登录，只能正常通过ssh使用git</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/passwd</span><br><span class="line">注释 ##git:x:1000:1000::/home/git:/bin/bash </span><br><span class="line">改为 git:x:1000:1000:git version control:/home/git:/usr/bin/git-shell</span><br></pre></td></tr></table></figure>
+
+<p>至此git服务端安装完成。<br>现在来测试是否安装成功，这里以window系统测试为例</p>
+<h2 id="二、客户端测试-克隆git仓库"><a href="#二、客户端测试-克隆git仓库" class="headerlink" title="二、客户端测试-克隆git仓库"></a>二、客户端测试-克隆git仓库</h2><p>需要在客户端安装git工具，linux系统默认有不需要安装，window系统需要<br>下载地址：<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">https://git-scm.com/download/win</a> </p>
+<p>第1步：生成私钥和公钥，在window系统cmd命令行中输入命令 ssh-keygen  , 一路回车即可，会在当前用户的.ssh目录中生成以下两个文件：</p>
+<ul>
+<li>id_rsa 私钥</li>
+<li>id_rsa.pub 公钥 </li>
+</ul>
+<p>需要将公钥文件内容（id_rsa.pub）提交给git服务器的管理员，他会将此公钥内容添加到服务器的<code>.ssh/authorized_key</code>文件中，一行一个。</p>
+<p>第2步：克隆git仓库，到本地目录测试</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone git@xxx.xxx.xxx.xxx:/home/git/project.git  ./</span><br><span class="line">git add .</span><br><span class="line">git commit -m 'first commit'</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<p>其中xxx.xxx.xxx.xxx为git服务器的ip地址</p>
+<blockquote>
+<p>注：若提示需要密码，则检查上面的公钥和私钥是否配置成功</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/03/js运行机制/" data-id="cjwg2ti1t0001t4tgkzgcobhs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原理/">原理</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/03/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原理/">原理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/原理/" style="font-size: 10px;">原理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/03/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/03/js运行机制/">js运行机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
