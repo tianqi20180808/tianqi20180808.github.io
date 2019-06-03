@@ -5,15 +5,20 @@
   
 
   
-  <title>tianqi的网站</title>
+  <title>js深浅拷贝 | tianqi的网站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tianqi的网站">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="深浅拷贝（克隆）1、 回顾基本类型和引用类型赋值过程  基本类型：按值传递 引用类型：按址传递  2、  内存中的栈和堆  栈：系统自动分配内存空间，且自动释放，里面存放的是基本类型的值和引用类型的地址 堆：动态分配的内存，大小不定，也不会自动释放。里面存放引用类型的值。  3、深浅拷贝  浅拷贝：把一个对象赋值给另一个新对象，对新对象的值进行修改会影响到原来的对象，我们称之为浅拷贝。其本质是新旧">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js深浅拷贝">
+<meta property="og:url" content="http://yoursite.com/2019/06/03/js深浅拷贝/index.html">
 <meta property="og:site_name" content="tianqi的网站">
+<meta property="og:description" content="深浅拷贝（克隆）1、 回顾基本类型和引用类型赋值过程  基本类型：按值传递 引用类型：按址传递  2、  内存中的栈和堆  栈：系统自动分配内存空间，且自动释放，里面存放的是基本类型的值和引用类型的地址 堆：动态分配的内存，大小不定，也不会自动释放。里面存放引用类型的值。  3、深浅拷贝  浅拷贝：把一个对象赋值给另一个新对象，对新对象的值进行修改会影响到原来的对象，我们称之为浅拷贝。其本质是新旧">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-03T08:08:33.887Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tianqi的网站">
+<meta name="twitter:title" content="js深浅拷贝">
+<meta name="twitter:description" content="深浅拷贝（克隆）1、 回顾基本类型和引用类型赋值过程  基本类型：按值传递 引用类型：按址传递  2、  内存中的栈和堆  栈：系统自动分配内存空间，且自动释放，里面存放的是基本类型的值和引用类型的地址 堆：动态分配的内存，大小不定，也不会自动释放。里面存放引用类型的值。  3、深浅拷贝  浅拷贝：把一个对象赋值给另一个新对象，对新对象的值进行修改会影响到原来的对象，我们称之为浅拷贝。其本质是新旧">
   
     <link rel="alternate" href="/atom.xml" title="tianqi的网站" type="application/atom+xml">
   
@@ -60,9 +65,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-js深浅拷贝" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-js深浅拷贝" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/03/js深浅拷贝/" class="article-date">
   <time datetime="2019-06-03T08:07:53.000Z" itemprop="datePublished">2019-06-03</time>
@@ -75,8 +78,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/03/js深浅拷贝/">js深浅拷贝</a>
+    <h1 class="article-title" itemprop="name">
+      js深浅拷贝
     </h1>
   
 
@@ -130,60 +133,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/03/hello-world/" class="article-date">
-  <time datetime="2019-06-03T07:40:40.818Z" itemprop="datePublished">2019-06-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/03/hello-world/">Hello World</a>
-    </h1>
+    <a href="/2019/06/03/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/03/hello-world/" data-id="cjwg3elei0000aktgsasfxvda" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
